@@ -1,0 +1,7 @@
+name: AntyLogout
+main: pl.fcraft.antylogout.AntyLogoutPlugin
+version: 1.0
+commands:
+  fight:
+    aliases: [walka]
+    description: "Auaktywania walkę z graczem."
