@@ -4,6 +4,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
+import pl.fcraft.antylogout.base.LogoutData
 import pl.fcraft.antylogout.base.LogoutTask
 
 class EntityDamageListener: Listener {
@@ -16,14 +17,12 @@ class EntityDamageListener: Listener {
         val damager = event.damager as Player
         val victim = event.entity as Player
 
-        val damagerTask = LogoutTask.get(damager.uniqueId) ?: LogoutTask(damager)
-        val victimTask = LogoutTask.get(victim.uniqueId) ?: LogoutTask(victim)
+        val damagerData = LogoutData.get(damager) ?: LogoutData(damager)
+        val victimData = LogoutData.get(victim) ?: LogoutData(victim)
 
-        damagerTask.fight(victim)
-        victimTask.fight(damager)
+        damagerData.fight(victim)
+        victimData.fight(damager)
 
-        damagerTask.start()
-        victimTask.start()
     }
 
 }
